@@ -48,7 +48,7 @@ export default function Register() {
       setFormData((prev) => ({
         ...prev,
         [parent]: {
-          ...prev[parent as keyof typeof prev],
+          ...[parent],
           [child]: parsedValue,
         },
       }));
@@ -64,7 +64,7 @@ export default function Register() {
       [name]: "",
     }))};
 
-    
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
