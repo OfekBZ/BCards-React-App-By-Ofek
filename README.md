@@ -38,10 +38,6 @@ REST API on DigitalOcean
 🚀 Deployment
 The REST API is hosted at https://monkfish-app-z9uza.ondigitalocean.app
 
-This frontend can be deployed to Vercel/Netlify/etc.
 
-yaml
-Copy
-Edit
 
----
+
