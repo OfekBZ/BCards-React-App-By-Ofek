@@ -36,7 +36,7 @@ export default function Login() {
       const token = response.data;
       localStorage.setItem("token", token);
 
-      const decoded: any = jwtDecode(token);
+      const decoded: UserType = jwtDecode(token);
       console.log("Decoded user:", decoded);
 
       const userDetails = await axios.get(

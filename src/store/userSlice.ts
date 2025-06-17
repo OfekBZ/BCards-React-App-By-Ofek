@@ -1,10 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type UserType = {
+export type UserType = {
   _id: string;
   isBusiness: boolean;
   isAdmin: boolean;
-  iat?: number;
+  email: string;
+  phone?: string;
+  name?: {
+    first: string;
+    middle?: string;
+    last: string;
+  };
+  image?: {
+    url: string;
+    alt: string;
+  };
+  address?: {
+    state: string;
+    country: string;
+    city: string;
+    street: string;
+    houseNumber: string;
+    zip: string;
+  };
 } | null;
 
 const initialState: UserType = null;
@@ -13,7 +31,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<UserType>) => action.payload,
+    setUser: (_state, action: PayloadAction<UserType>) => action.payload,
     clearUser: () => null,
   },
 });

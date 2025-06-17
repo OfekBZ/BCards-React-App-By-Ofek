@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -25,7 +25,7 @@ import { RootState } from "./store/store";
 import { setUser, clearUser } from "./store/userSlice";
 
 export default function App() {
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((s: RootState) => s.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +34,6 @@ export default function App() {
       dispatch(clearUser());
       return;
     }
-
     let decoded: { _id: string };
     try {
       decoded = jwtDecode(token) as { _id: string };
@@ -42,7 +41,6 @@ export default function App() {
       dispatch(clearUser());
       return;
     }
-
     axios
       .get(
         `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${decoded._id}`,
@@ -62,6 +60,7 @@ export default function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/my-cards" element={<MyCardsPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+
         <Route
           path="/create-card"
           element={
@@ -78,6 +77,7 @@ export default function App() {
             </BusinessRoute>
           }
         />
+
         <Route path="/about" element={<AboutPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
