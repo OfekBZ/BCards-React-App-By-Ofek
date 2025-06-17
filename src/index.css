@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+Main{
+   @apply dark:bg-sky-950
+}
+body{
+   @apply bg-sky-200 dark:bg-sky-950
+}
