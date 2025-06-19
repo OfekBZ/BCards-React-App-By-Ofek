@@ -84,7 +84,7 @@ export default function App() {
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
 
-      {user && user.isBusiness && <FloatingAddButton />}
+      {user?.isBusiness && <FloatingAddButton />}
       <MyFooter />
     </>
   );
