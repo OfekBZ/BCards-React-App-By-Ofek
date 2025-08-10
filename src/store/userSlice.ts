@@ -1,44 +1,44 @@
+// src/store/userSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type UserType = {
+export type AppUser = {
   _id: string;
-  isBusiness: boolean;
-  isAdmin: boolean;
   email: string;
-  phone?: string;
-  name?: {
-    first: string;
-    middle?: string;
-    last: string;
-  };
-  image?: {
-    url: string;
-    alt: string;
-  };
-  address?: {
-    state: string;
-    country: string;
-    city: string;
-    street: string;
-    houseNumber: string;
-    zip: string;
-  };
-} | null;
+  isBusiness?: boolean;
+  isAdmin?: boolean;
+  name?: { first?: string; middle?: string; last?: string };
+  image?: { url?: string; alt?: string };
+};
 
+type UserState = AppUser | null;
 
-export type UserType = User | null;
+const initialState: UserState = null;
 
-const initialState: UserType = null;
-
-
-const userSlice = createSlice<UserType>({
+const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: initialState as UserState,
   reducers: {
-    setUser: (_state, action: PayloadAction<UserType>) => action.payload,
-    clearUser: () => null,
+    setUser: (_state: UserState, action: PayloadAction<AppUser | null>): UserState =>
+      action.payload,
+
+    clearUser: (): UserState => null,
+
+    updateUserImage: (
+      state: UserState,
+      action: PayloadAction<{ url: string; alt?: string }>
+    ): UserState => {
+      if (!state) return state;
+      const next: AppUser = {
+        ...state,
+        image: {
+          url: action.payload.url,
+          alt: action.payload.alt ?? state.image?.alt ?? "",
+        },
+      };
+      return next;
+    },
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, updateUserImage } = userSlice.actions;
 export default userSlice.reducer;
