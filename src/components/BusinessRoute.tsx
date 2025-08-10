@@ -1,15 +1,10 @@
-import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function BusinessRoute({ children }: { children: ReactNode }) {
-  const user = useSelector((state: RootState) => state.user);
+export default function BusinessRoute({ children }: { children: JSX.Element }) {
+  const { user } = useAuth();
+  if (!user) return <Navigate to="/login" replace />;
+  if (!(user.isBusiness || user.isAdmin)) return <Navigate to="/" replace />;
+  return children;}
 
- 
-  if (!user || !user.isBusiness) {
-    return <Navigate to="*" replace />;
-  }
-
-  return <>{children}</>;
-}
+  

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "flowbite-react";
 
+
 export default function CardDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();

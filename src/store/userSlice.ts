@@ -25,7 +25,11 @@ export type UserType = {
   };
 } | null;
 
+
+export type UserType = User | null;
+
 const initialState: UserType = null;
+
 
 const userSlice = createSlice<UserType>({
   name: "user",
